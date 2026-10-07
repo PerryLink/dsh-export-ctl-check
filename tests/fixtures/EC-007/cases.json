@@ -1,0 +1,32 @@
+{
+  "ruleId": "EC-007",
+  "configure": {
+    "EC-007": {
+      "values": [
+        "核",
+        "导弹",
+        "生物",
+        "化学",
+        "军民两用"
+      ]
+    }
+  },
+  "pairs": [
+    {
+      "name": "expected-state",
+      "material": "EC-007-compliant.json",
+      "expect": {
+        "ruleId": "EC-007",
+        "count": 0
+      }
+    },
+    {
+      "name": "difference-present",
+      "material": "EC-007-unsafe.json",
+      "expect": {
+        "ruleId": "EC-007",
+        "count": 1
+      }
+    }
+  ]
+}
