@@ -63,14 +63,13 @@ applies a versioned rule pack, and returns a report.
 | Rule | Check | Severity | Basis kind |
 |---|---|---|---|
 | `EC-001` | each item states whether it is controlled | warn | principle |
-| `EC-002` | a controlled item carries a licence number | warn | principle |
+| `EC-002` | a controlled item carries a licence number | warn | direct |
 | `EC-003` | a recorded licence carries an issue date | warn | principle |
-| `EC-004` | the end use or end user is recorded | warn | principle |
-| `EC-005` | a destination is recorded | warn | principle |
+| `EC-004` | the end use or end user is recorded | warn | direct |
+| `EC-005` | a destination is recorded | warn | direct |
 | `EC-006` | licence numbers do not repeat | warn | principle |
-| `EC-007` | the control category comes from your vocabulary (off by default) | info | local |
-| `EC-008` | the item name holds no unreplaced placeholder | warn | principle |
-
+| `EC-007` | the control category comes from your vocabulary (off by default) | info | principle |
+| `EC-008` | the item name holds no unreplaced placeholder | warn | direct |
 ## Install
 
 ```sh
