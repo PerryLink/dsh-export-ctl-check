@@ -1,6 +1,6 @@
 {
   "name": "dsh-export-ctl-check",
-  "version": "0.2.1",
+  "version": "0.2.2",
   "description": "出口管制物项核对（按管制清单、最终用途与许可证核对台账齐备，仅提示差异，不作出定性结论）",
   "type": "module",
   "main": "lib/index.mjs",
