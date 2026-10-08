@@ -1,4 +1,24 @@
-# dsh-export-ctl-check
+# dsh-export-ctl-check — Registro de artículos sujetos a control de exportación y verificación del cierre de licencias
+
+`dsh-export-ctl-check` lee un registro de artículos sujetos a control de exportación —la cabecera del exportador más una fila por artículo— y verifica la completitud y el cierre de ese propio registro, no un juicio sobre los artículos: si cada artículo indica en la columna 是否受控 si está sujeto a control, si un artículo marcado como controlado lleva un 出口许可证号, si un número de licencia anotado va acompañado de su fecha de expedición, si consta el uso final o el usuario final, si consta el destino final, si un número de licencia se repite dentro del mismo registro, si la categoría de control es uno de los valores de 管制类别 de la propia institución, y si en la columna del nombre del artículo sobrevive algún marcador como 【】, XXX, 待填, TBD o 示例.
+
+## Qué responde
+
+| Usted pregunta | Qué responde |
+|---|---|
+| ¿Se informa si un artículo marcado como controlado no tiene número de licencia? | `EC-002` informa de esa laguna: en una fila cuyo valor de 是否受控 sea uno de los que la regla trata como controlado —de fábrica `是`, `Y`, `yes`, `true`, `受控`, `√`— exige un 出口许可证号. Solo comprueba que el número esté anotado; no juzga si la licencia es auténtica, si sigue vigente o si cubre ese artículo y ese destino. Si su registro escribe otra palabra para «controlado», agréguela a los valores de condición de la regla; de lo contrario la fila cuenta como no controlada y la regla calla: este plugin no contiene lista de control alguna que decida por usted. |
+| Un artículo indica si está controlado, pero deja vacías las columnas 最终用途 y 最终用户. ¿Se detecta? | `EC-004` informa de la fila: pide que al menos una de esas dos columnas esté completa. Con una basta, y la regla no juzga si el uso o el usuario declarados son ciertos ni si el caso es uno de los que la ley prohíbe o restringe. |
+| Hay número de licencia, pero la columna de la fecha de expedición está vacía. ¿Es un hallazgo? | `EC-003` la exige. La condición es el número de licencia: a una fila sin número no se le pide fecha alguna. La regla no comprueba el período de validez de la licencia ni contrasta la fecha de expedición con la de exportación: establece que la fecha está, no que sea anterior. |
+| Un mismo número de licencia aparece en varias filas. ¿Qué dice la comprobación? | `EC-006` informa del número como repetido dentro del registro. No distingue una licencia que cubre varios artículos —forma normal de llevar el registro— de un número copiado por error, así que un hallazgo necesita confirmación humana; la regla no renumera nada ni fija cuántas filas pueden compartir una licencia. Si su registro se lleva deliberadamente a razón de una licencia por varios artículos, numere las filas de esa licencia o desactive la regla. |
+| Una fila no tiene 最终目的地. | `EC-005` la informa, porque todo artículo debe llevar destino. Comprueba que la columna esté completa, no que el destino esté permitido: si un país o región está embargado o restringido se lee en las listas que publica la autoridad competente, y este plugin no contiene ninguna lista de países. |
+| La columna del nombre del artículo todavía dice `【示例】` o `XXX`. ¿Se trata como defecto o como nombre real? | `EC-008` informa de la fila cuando el nombre contiene uno de los términos que la regla busca: `【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo` o `示例`. Esa lista de términos sigue su propia plantilla y puede ajustarse. La regla busca esos términos solo en esa columna: nunca juzga si el nombre es fácticamente correcto. |
+
+## Normas que sigue
+
+| Documento | Número | Reglas que lo citan |
+|---|---|---|
+| 《中华人民共和国出口管制法》 | 2020 年 10 月 17 日第十三届全国人大常委会第二十二次会议通过，主席令第五十八号公布，自 2020 年 12 月 1 日起施行 | EC-001, EC-002, EC-003, EC-004, EC-005, EC-006, EC-008 |
+| 《中华人民共和国出口管制法》 | 现行版本本次未核实 | EC-007 |
 
 **Boundary:** this plugin checks an **出口管制物项台账** for the closed loop a register can be held to — that
 each item states whether it is controlled, that a controlled item carries a licence number, that a licence

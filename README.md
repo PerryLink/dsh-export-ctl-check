@@ -1,4 +1,24 @@
-# dsh-export-ctl-check
+# dsh-export-ctl-check — Export-control item register and licence closure cross-check
+
+`dsh-export-ctl-check` reads one export-control item register — the exporter header plus one row per item — and cross-checks that register's own completeness and closure rather than any judgement about the items: whether each item states in the 是否受控 column whether it is controlled, whether an item marked as controlled carries a 出口许可证号, whether a licence number that is filled in is accompanied by an issue date, whether the end use or the end user is recorded, whether the destination is recorded, whether a licence number repeats inside the same register, whether the control category is one of the institution's own 管制类别 values, and whether a placeholder such as 【】, XXX, 待填, TBD or 示例 still survives in the item-name column.
+
+## What it answers
+
+| You ask | What it answers |
+|---|---|
+| Is it reported when an item marked as controlled has no licence number? | `EC-002` reports that gap: for a row whose 是否受控 value is one the rule is configured to treat as controlled — shipped as `是`, `Y`, `yes`, `true`, `受控`, `√` — it requires a 出口许可证号. It checks only that the number is filled in; it does not judge whether the licence is genuine, still valid, or covers that item and that destination. If your register writes some other word for controlled, add it to the rule's condition values, or the row counts as not controlled and the rule stays silent — this plugin holds no control list to decide the question for you. |
+| An item states whether it is controlled but leaves the 最终用途 and 最终用户 columns empty — does anything catch that? | `EC-004` reports the row: it asks for at least one of those two columns to be filled. One of the two is enough, and the rule does not judge whether the stated use or user is true or whether the case is one the law prohibits or restricts. |
+| A licence number is written down but the issue-date column is blank. Is that a finding? | `EC-003` requires it. The condition is the licence number: a row without one is not asked for a date at all. The rule does not check the licence's validity period, and it does not weigh the issue date against the export date — it establishes that a date is there, not that it comes first. |
+| One and the same licence number appears on several rows. What does the check say? | `EC-006` reports the number as repeated across the register. It cannot tell a single licence covering several items — a normal way to keep the register — from a number copied by mistake, so a hit needs a person to confirm it; the rule does not renumber anything, and it does not say how many rows may share one licence. If your register is deliberately written one-licence-many-items, give the rows of that licence a serial number, or switch the rule off. |
+| A row has no 最终目的地 at all. | `EC-005` reports it, because every item has to carry a destination. It checks that the column is filled, not that the destination is permitted: whether a country or region is embargoed or restricted is read from lists the competent authority publishes, and this plugin holds no country list of its own. |
+| The item-name column still reads `【示例】` or `XXX` — is that treated as a defect or as a real name? | `EC-008` reports the row when the name contains one of the terms the rule looks for — `【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo` or `示例`. That term list follows your own template and can be adjusted. The rule looks for those terms in that one column only: it never judges whether the name itself is factually correct. |
+
+## Standards it follows
+
+| Document | Number | Cited by rules |
+|---|---|---|
+| 《中华人民共和国出口管制法》 | 2020 年 10 月 17 日第十三届全国人大常委会第二十二次会议通过，主席令第五十八号公布，自 2020 年 12 月 1 日起施行 | EC-001, EC-002, EC-003, EC-004, EC-005, EC-006, EC-008 |
+| 《中华人民共和国出口管制法》 | 现行版本本次未核实 | EC-007 |
 
 **Boundary:** this plugin checks an **出口管制物项台账** for the closed loop a register can be held to — that
 each item states whether it is controlled, that a controlled item carries a licence number, that a licence

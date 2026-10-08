@@ -1,4 +1,24 @@
-# dsh-export-ctl-check
+# dsh-export-ctl-check — Registo de artigos sujeitos a controlo de exportação e verificação do fecho das licenças
+
+`dsh-export-ctl-check` lê um registo de artigos sujeitos a controlo de exportação —o cabeçalho do exportador mais uma linha por artigo— e verifica a completude e o fecho desse próprio registo, não um juízo sobre os artigos: se cada artigo indica na coluna 是否受控 se está sujeito a controlo, se um artigo marcado como controlado traz um 出口许可证号, se um número de licença registado vem acompanhado da data de emissão, se consta o uso final ou o utilizador final, se consta o destino final, se um número de licença se repete dentro do mesmo registo, se a categoria de controlo é um dos valores de 管制类别 da própria instituição, e se na coluna do nome do artigo sobrevive algum marcador como 【】, XXX, 待填, TBD ou 示例.
+
+## O que ele responde
+
+| Você pergunta | O que ele responde |
+|---|---|
+| Um artigo marcado como controlado sem número de licença é reportado? | `EC-002` reporta essa lacuna: numa linha cujo valor de 是否受控 seja um dos que a regra trata como controlado —de fábrica `是`, `Y`, `yes`, `true`, `受控`, `√`— exige um 出口许可证号. Verifica apenas que o número está preenchido; não julga se a licença é autêntica, se continua válida ou se abrange esse artigo e esse destino. Se o seu registo escreve outra palavra para «controlado», acrescente-a aos valores de condição da regra; caso contrário a linha conta como não controlada e a regra fica em silêncio — este plugin não contém qualquer lista de controlo que decida por você. |
+| Um artigo indica se está controlado, mas deixa vazias as colunas 最终用途 e 最终用户. Isso é detetado? | `EC-004` reporta a linha: pede que pelo menos uma dessas duas colunas esteja preenchida. Basta uma, e a regra não julga se o uso ou o utilizador declarados são verdadeiros nem se o caso é um dos que a lei proíbe ou restringe. |
+| Há número de licença, mas a coluna da data de emissão está vazia. É um achado? | `EC-003` exige-a. A condição é o número de licença: a uma linha sem número não se pede data nenhuma. A regra não verifica o período de validade da licença nem confronta a data de emissão com a de exportação: estabelece que a data existe, não que seja anterior. |
+| O mesmo número de licença aparece em várias linhas. O que diz a verificação? | `EC-006` reporta o número como repetido dentro do registo. Não distingue uma licença que abrange vários artigos —forma normal de manter o registo— de um número copiado por engano, pelo que um resultado precisa de confirmação humana; a regra não renumera nada nem fixa quantas linhas podem partilhar uma licença. Se o seu registo é deliberadamente escrito como uma licença para vários artigos, numere as linhas dessa licença ou desative a regra. |
+| Uma linha não tem 最终目的地. | `EC-005` reporta-a, porque todo o artigo tem de trazer destino. Verifica que a coluna está preenchida, não que o destino seja permitido: se um país ou região está embargado ou restringido lê-se nas listas que a autoridade competente publica, e este plugin não contém nenhuma lista de países. |
+| A coluna do nome do artigo ainda diz `【示例】` ou `XXX`. É tratado como defeito ou como nome real? | `EC-008` reporta a linha quando o nome contém um dos termos que a regra procura: `【`, `】`, `{{`, `}}`, `XXX`, `xxx`, `待填`, `待补充`, `TBD`, `todo` ou `示例`. Essa lista de termos segue o seu próprio modelo e pode ser ajustada. A regra procura esses termos apenas nessa coluna: nunca julga se o nome está factualmente correto. |
+
+## Normas que segue
+
+| Documento | Número | Regras que o citam |
+|---|---|---|
+| 《中华人民共和国出口管制法》 | 2020 年 10 月 17 日第十三届全国人大常委会第二十二次会议通过，主席令第五十八号公布，自 2020 年 12 月 1 日起施行 | EC-001, EC-002, EC-003, EC-004, EC-005, EC-006, EC-008 |
+| 《中华人民共和国出口管制法》 | 现行版本本次未核实 | EC-007 |
 
 **Boundary:** this plugin checks an **出口管制物项台账** for the closed loop a register can be held to — that
 each item states whether it is controlled, that a controlled item carries a licence number, that a licence
