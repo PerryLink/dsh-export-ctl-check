@@ -2,4 +2,9 @@
 
 ## 0.1.0
 
-- Initial release — 出口管制物项核对（按管制清单、最终用途与许可证核对台账齐备，仅提示差异，不作出定性结论）
+- Release infrastructure brought to the family standard: `verify:self-contained`,
+  `check:lockfile` and `check:readmes` gates, a `prepublishOnly` that re-runs the whole chain,
+  SECURITY.md, dependabot, and the OpenSSF Scorecard workflow.
+- The README install command now names the published package instead of a local tarball.
+- Rule pack: 8 rules across EC-001..EC-008.
+- Licensed Apache-2.0.

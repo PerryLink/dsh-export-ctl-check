@@ -42,8 +42,7 @@ breach the rules.
 ## Install
 
 ```sh
-pnpm pack
-dsh plugin --profile <name> add ./*.tgz
+dsh plugin --profile <name> add dsh-export-ctl-check
 dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
 ```
 
