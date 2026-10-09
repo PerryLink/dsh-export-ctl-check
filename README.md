@@ -40,10 +40,10 @@ breach the rules.
 > that declaration: is a licence recorded, is it dated, is the destination and end use stated, does the
 > register hold together. **It never checks whether the declaration was right.**
 >
-> **Every `excerpt` in the rule pack says, in so many words, that the clause text was not obtained.** The
+> **The rule pack states its citation status rule by rule.** **4 of its 8 rules quote verbatim clause text** and are marked `direct`; the remaining 4 state in the `excerpt` field itself that the text was not obtained, and stay at `warn` or `info`. Where a rule still carries that note, treat it as a lead rather than as a citation. The
 > regime lives in 《中华人民共和国出口管制法》, the dual-use export licensing measures, and the published
-> control list. The verification pass could not retrieve verbatim clause text, so the pack states the gap in
-> the `excerpt` field itself and keeps every rule at `warn` or `info`. **When the texts are in hand, replace
+> control list. For the rules whose text the verification pass could not retrieve, the pack states the gap in the
+> `excerpt` field itself rather than paraphrasing it, and those rules stay at `warn` or `info`. **When the texts are in hand, replace
 > each `excerpt` with the real clause and raise `kind` to `direct`.**
 
 ## Compatibility
