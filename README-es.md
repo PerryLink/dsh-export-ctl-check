@@ -1,6 +1,14 @@
 # dsh-export-ctl-check — Registro de artículos sujetos a control de exportación y verificación del cierre de licencias
 
+[![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+
 `dsh-export-ctl-check` lee un registro de artículos sujetos a control de exportación —la cabecera del exportador más una fila por artículo— y verifica la completitud y el cierre de ese propio registro, no un juicio sobre los artículos: si cada artículo indica en la columna 是否受控 si está sujeto a control, si un artículo marcado como controlado lleva un 出口许可证号, si un número de licencia anotado va acompañado de su fecha de expedición, si consta el uso final o el usuario final, si consta el destino final, si un número de licencia se repite dentro del mismo registro, si la categoría de control es uno de los valores de 管制类别 de la propia institución, y si en la columna del nombre del artículo sobrevive algún marcador como 【】, XXX, 待填, TBD o 示例.
+
+## Cómo se ve la salida
+
+![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.png)
+
+Salida real de este plugin sobre su propio fixture de prueba `EC-001` — no es un montaje. El paquete de reglas no inventa citas, así que cada hallazgo nombra la cláusula aplicada y advierte que su texto no se obtuvo.
 
 ## Qué responde
 

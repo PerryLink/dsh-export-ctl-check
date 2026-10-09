@@ -1,6 +1,14 @@
 # dsh-export-ctl-check — 出口管制物项台账与许可证闭环核对
 
+[![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+
 `dsh-export-ctl-check` 读取一份出口管制物项台账——出口经营者表头加每条物项一行——核对这份台账自身的齐备与闭环，而不对物项本身作出判断：每条物项是否在「是否受控」栏写明是否受控、标为受控的物项是否填写了出口许可证号、填了许可证号的是否写明了发证日期、最终用途或最终用户是否至少填写了一项、最终目的地是否填写、许可证号是否在同一份台账内重复、管制类别是否取用本机构自己的管制类别取值、物项名称栏是否残留【】、XXX、待填、TBD、示例之类未替换的占位符。
+
+## 实际输出长什么样
+
+![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.png)
+
+本插件对自己 `EC-001` 测试夹具的**真实输出**，不是示意图。规则库不伪造引文，因此每条发现都会同时写明所引条款，以及该条款原文本次未取得。
 
 ## 它回答什么问题
 
