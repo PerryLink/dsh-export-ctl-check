@@ -6,7 +6,9 @@
 
 ## Cómo se ve la salida
 
-![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.png)
+![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-hero.png)
+
+![Animated terminal demo of dsh-export-ctl-check](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.gif)
 
 Salida real de este plugin sobre su propio fixture de prueba `EC-001` — no es un montaje. El paquete de reglas no inventa citas, así que cada hallazgo nombra la cláusula aplicada y advierte que su texto no se obtuvo.
 

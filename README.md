@@ -6,7 +6,9 @@
 
 ## What it looks like
 
-![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.png)
+![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-hero.png)
+
+![Animated terminal demo of dsh-export-ctl-check](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-demo.gif)
 
 Real output from this plugin over its own `EC-001` test fixture — not a mock-up. The rule pack ships no invented quotations, so a finding names both the clause it applied and the fact that the clause text was not obtained.
 

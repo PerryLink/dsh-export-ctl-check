@@ -1,0 +1,14 @@
+[
+  {
+    "path": "docs/assets/dsh-export-ctl-check-hero.png",
+    "kind": "hero",
+    "alt": "dsh-export-ctl-check terminal output",
+    "caption": "Real dsh-export-ctl-check checker output; 31 tests passed."
+  },
+  {
+    "path": "docs/assets/dsh-export-ctl-check-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-export-ctl-check terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]
