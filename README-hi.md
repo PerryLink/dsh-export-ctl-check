@@ -4,6 +4,13 @@
 
 `dsh-export-ctl-check` एक निर्यात-नियंत्रण मद रजिस्टर पढ़ता है — निर्यातक हेडर और हर मद की एक पंक्ति — और उसी रजिस्टर की पूर्णता तथा बंद-कड़ी (closure) की जाँच करता है, मदों के बारे में कोई निर्णय नहीं: क्या हर मद 是否受控 कॉलम में लिखती है कि वह नियंत्रित है या नहीं, क्या नियंत्रित बताई गई मद में 出口许可证号 दर्ज है, क्या दर्ज लाइसेंस क्रमांक के साथ जारी करने की तिथि भी है, क्या अंतिम उपयोग या अंतिम उपयोगकर्ता में से कम से कम एक दर्ज है, क्या अंतिम गंतव्य दर्ज है, क्या एक ही रजिस्टर में लाइसेंस क्रमांक दोहराया गया है, क्या नियंत्रण श्रेणी संस्था के अपने 管制类别 मानों में से है, और क्या मद-नाम कॉलम में 【】, XXX, 待填, TBD या 示例 जैसा कोई प्लेसहोल्डर शेष है।
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-export-ctl-check
+dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
+```
+
 ## आउटपुट कैसा दिखता है
 
 ![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-hero.png)
@@ -68,13 +75,6 @@ breach the rules.
 ## What it does
 
 नियम-सूची, फ़ील्ड और विस्तृत व्यवहार [README.md](README.md#what-it-does) (अंग्रेज़ी मुख्य संस्करण) में हैं। यह प्लगइन केवल उद्धृत धाराओं के सामने शाब्दिक अंतर सूचीबद्ध करता है और हर न चल पाई जाँच को `skipped` में बताता है।
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-export-ctl-check
-dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
-```
 
 ## Configuration
 

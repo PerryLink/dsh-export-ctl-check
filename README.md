@@ -4,6 +4,13 @@
 
 `dsh-export-ctl-check` reads one export-control item register — the exporter header plus one row per item — and cross-checks that register's own completeness and closure rather than any judgement about the items: whether each item states in the 是否受控 column whether it is controlled, whether an item marked as controlled carries a 出口许可证号, whether a licence number that is filled in is accompanied by an issue date, whether the end use or the end user is recorded, whether the destination is recorded, whether a licence number repeats inside the same register, whether the control category is one of the institution's own 管制类别 values, and whether a placeholder such as 【】, XXX, 待填, TBD or 示例 still survives in the item-name column.
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-export-ctl-check
+dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
+```
+
 ## What it looks like
 
 ![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-hero.png)
@@ -80,13 +87,6 @@ applies a versioned rule pack, and returns a report.
 | `EC-006` | licence numbers do not repeat | warn | principle |
 | `EC-007` | the control category comes from your vocabulary (off by default) | info | principle |
 | `EC-008` | the item name holds no unreplaced placeholder | warn | direct |
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-export-ctl-check
-dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
-```
-
 ## Configuration
 
 | Key | Type | Default | Description |

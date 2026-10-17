@@ -4,6 +4,13 @@
 
 `dsh-export-ctl-check` 读取一份出口管制物项台账——出口经营者表头加每条物项一行——核对这份台账自身的齐备与闭环，而不对物项本身作出判断：每条物项是否在「是否受控」栏写明是否受控、标为受控的物项是否填写了出口许可证号、填了许可证号的是否写明了发证日期、最终用途或最终用户是否至少填写了一项、最终目的地是否填写、许可证号是否在同一份台账内重复、管制类别是否取用本机构自己的管制类别取值、物项名称栏是否残留【】、XXX、待填、TBD、示例之类未替换的占位符。
 
+## Install
+
+```sh
+dsh plugin --profile <name> add dsh-export-ctl-check
+dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
+```
+
 ## 实际输出长什么样
 
 ![Terminal demo of dsh-export-ctl-check: real output over its EC-001 fixture](https://raw.githubusercontent.com/PerryLink/dsh-export-ctl-check/main/docs/assets/dsh-export-ctl-check-hero.png)
@@ -68,13 +75,6 @@ breach the rules.
 ## What it does
 
 规则表、字段说明与行为细节见 [README.md](README.md#what-it-does)（英文主版本）。本插件只列出材料与所引条款之间的字面差异，并对无法执行的检查在 `skipped` 中逐项说明。
-
-## Install
-
-```sh
-dsh plugin --profile <name> add dsh-export-ctl-check
-dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
-```
 
 ## Configuration
 
