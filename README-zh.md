@@ -1,5 +1,7 @@
 # dsh-export-ctl-check — 出口管制物项台账与许可证闭环核对
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-export-ctl-check` 读取一份出口管制物项台账——出口经营者表头加每条物项一行——核对这份台账自身的齐备与闭环，而不对物项本身作出判断：每条物项是否在「是否受控」栏写明是否受控、标为受控的物项是否填写了出口许可证号、填了许可证号的是否写明了发证日期、最终用途或最终用户是否至少填写了一项、最终目的地是否填写、许可证号是否在同一份台账内重复、管制类别是否取用本机构自己的管制类别取值、物项名称栏是否残留【】、XXX、待填、TBD、示例之类未替换的占位符。

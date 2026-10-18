@@ -1,5 +1,7 @@
 # dsh-export-ctl-check — Export-control item register and licence closure cross-check
 
+[English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
+
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
 
 `dsh-export-ctl-check` reads one export-control item register — the exporter header plus one row per item — and cross-checks that register's own completeness and closure rather than any judgement about the items: whether each item states in the 是否受控 column whether it is controlled, whether an item marked as controlled carries a 出口许可证号, whether a licence number that is filled in is accompanied by an issue date, whether the end use or the end user is recorded, whether the destination is recorded, whether a licence number repeats inside the same register, whether the control category is one of the institution's own 管制类别 values, and whether a placeholder such as 【】, XXX, 待填, TBD or 示例 still survives in the item-name column.
