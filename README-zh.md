@@ -41,24 +41,13 @@ dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
 
 **边界（中文译文，以英文原文为准）：** 本插件核对一份 **出口管制物项台账** 在台账层面可以要求到的闭环——每条物项是否写明是否受控，标为受控的物项是否填写许可证号，填写许可证号的是否写明发证日期，是否记录最终用途或最终用户，是否记录最终目的地，许可证号是否不重复，管制类别是否取自你配置的取值口径，以及是否残留占位符。它**不**判定物项是否受控、是否需要许可证，也不判定某项出口是否会违反规定。
 
-> ### ⚠️ What this plugin deliberately cannot do
+> ### ⚠️ 本插件有意不能做的事（以英文原文为准）
 >
-> **It does not contain the control list, and it does not try to map a commodity code or a technical parameter
-> onto a list entry.** Because of that it **cannot find the most serious defect of all: an item that should
-> have been declared controlled and was not.** Whether an item is controlled is the exporter's own
-> determination under the law, and confirming it means checking the published list. This limit is stated in
-> the pack's header, in each rule's note, and in the troubleshooting section below — it is the single most
-> important thing to know about this plugin.
+> **本插件不包含管制清单，也不尝试把商品编码或技术参数映射到清单条目上。** 正因如此，它**无法发现最严重的一类缺陷：本应申报为受控、却没有申报的物项。** 一项物项是否受控，是出口经营者依法自行作出的认定，要确认它就得查阅已公布的清单。这一限制写在规则库开头、每条规则的说明里，以及下文的故障排查一节——它是了解本插件最重要的一件事。
 >
-> The 是否受控 column is therefore the register's own declaration. Everything here checks what happens *after*
-> that declaration: is a licence recorded, is it dated, is the destination and end use stated, does the
-> register hold together. **It never checks whether the declaration was right.**
+> 因此，是否受控一栏只是台账自己的申报。这里核对的一切都是该申报*之后*发生的事：是否记录了许可证，是否写明发证日期，是否写明目的地与最终用途，台账是否自洽。**它从不核对这一申报是否正确。**
 >
-> **Every `excerpt` in the rule pack says, in so many words, that the clause text was not obtained.** The
-> regime lives in 《中华人民共和国出口管制法》, the dual-use export licensing measures, and the published
-> control list. The verification pass could not retrieve verbatim clause text, so the pack states the gap in
-> the `excerpt` field itself and keeps every rule at `warn` or `info`. **When the texts are in hand, replace
-> each `excerpt` with the real clause and raise `kind` to `direct`.**
+> **规则库中的每一条 `excerpt` 都明确写着：本次未取得条款原文。** 该制度见于《中华人民共和国出口管制法》、两用物项出口许可措施以及已公布的管制清单。核验过程无法取得逐字条款原文，因此规则库把这一缺口写在 `excerpt` 字段本身，并把每条规则保持在 `warn` 或 `info`。**拿到原文后，请把每条 `excerpt` 替换为真实条款，并把 `kind` 提升为 `direct`。**
 
 ## Compatibility
 
