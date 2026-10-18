@@ -39,12 +39,7 @@ dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
 | 《中华人民共和国出口管制法》 | 2020 年 10 月 17 日第十三届全国人大常委会第二十二次会议通过，主席令第五十八号公布，自 2020 年 12 月 1 日起施行 | EC-001, EC-002, EC-003, EC-004, EC-005, EC-006, EC-008 |
 | 《中华人民共和国出口管制法》 | 现行版本本次未核实 | EC-007 |
 
-**Boundary:** this plugin checks an **出口管制物项台账** for the closed loop a register can be held to — that
-each item states whether it is controlled, that a controlled item carries a licence number, that a licence
-carries an issue date, that the end use or end user is recorded, that a destination is recorded, that licence
-numbers do not repeat, that the control category comes from your vocabulary, and that no placeholder survives.
-It does **not** decide whether an item is controlled, whether a licence is required, or whether an export would
-breach the rules.
+**边界（中文译文，以英文原文为准）：** 本插件核对一份 **出口管制物项台账** 在台账层面可以要求到的闭环——每条物项是否写明是否受控，标为受控的物项是否填写许可证号，填写许可证号的是否写明发证日期，是否记录最终用途或最终用户，是否记录最终目的地，许可证号是否不重复，管制类别是否取自你配置的取值口径，以及是否残留占位符。它**不**判定物项是否受控、是否需要许可证，也不判定某项出口是否会违反规定。
 
 > ### ⚠️ What this plugin deliberately cannot do
 >
