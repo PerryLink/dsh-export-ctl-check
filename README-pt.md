@@ -3,6 +3,7 @@
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 [![DSH Market](https://raw.githubusercontent.com/2BingLing/dsh-market/master/assets/readme/badge-listed-en.svg)](https://dsh.market/)
+[![dshfind](https://dshfind.com/api/badge/PerryLink/dsh-export-ctl-check?metric=downloads)](https://dshfind.com/en/plugins/PerryLink/dsh-export-ctl-check?ref=badge)
 
 `dsh-export-ctl-check` lê um registo de artigos sujeitos a controlo de exportação —o cabeçalho do exportador mais uma linha por artigo— e verifica a completude e o fecho desse próprio registo, não um juízo sobre os artigos: se cada artigo indica na coluna 是否受控 se está sujeito a controlo, se um artigo marcado como controlado traz um 出口许可证号, se um número de licença registado vem acompanhado da data de emissão, se consta o uso final ou o utilizador final, se consta o destino final, se um número de licença se repete dentro do mesmo registo, se a categoria de controlo é um dos valores de 管制类别 da própria instituição, e se na coluna do nome do artigo sobrevive algum marcador como 【】, XXX, 待填, TBD ou 示例.
 
