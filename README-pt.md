@@ -30,6 +30,35 @@ Saída real deste plugin sobre o seu próprio fixture de teste `EC-001` — não
 A tabela abaixo é o conjunto de exemplos: a primeira linha é o caso detalhado e as demais são casos curtos.
 
 
+#### Saída detalhada
+
+**Ferramenta** `export_ctl_check`
+
+**Entrada**
+
+~~~json
+{"rows":[{"物项名称":"某型高性能传感器","是否受控":""}]}
+~~~
+ 
+**Saída**
+
+~~~json
+{
+  "id": "dsh-export-ctl-check.EC-001.de09b5a6",
+  "ruleId": "EC-001",
+  "severity": "warn",
+  "locator": {
+    "field": "controlled",
+    "row": 1
+  },
+  "found": "第 1 行「controlled」为空",
+  "expected": "「controlled」应填写",
+  "fix": "补填是否受控；本条只核对是否声明，不判断该判断是否正确"
+}
+~~~
+
+*Observado em `tests/fixtures/EC-001/EC-001-unsafe.json (cases.json expects EC-001 count 1); run via lib/index.mjs rules/export-ctl-check.yaml`*
+
 | Você pergunta | O que ele responde |
 |---|---|
 | Um artigo marcado como controlado sem número de licença é reportado? | `EC-002` reporta essa lacuna: numa linha cujo valor de 是否受控 seja um dos que a regra trata como controlado —de fábrica `是`, `Y`, `yes`, `true`, `受控`, `√`— exige um 出口许可证号. Verifica apenas que o número está preenchido; não julga se a licença é autêntica, se continua válida ou se abrange esse artigo e esse destino. Se o seu registo escreve outra palavra para «controlado», acrescente-a aos valores de condição da regra; caso contrário a linha conta como não controlada e a regra fica em silêncio — este plugin não contém qualquer lista de controlo que decida por você. |

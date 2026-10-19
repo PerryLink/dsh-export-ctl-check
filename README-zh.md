@@ -30,6 +30,35 @@ dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
 下表是示例集：第一行是详细走查，其余行是简短案例。
 
 
+#### 详细输出
+
+**工具** `export_ctl_check`
+
+**输入**
+
+~~~json
+{"rows":[{"物项名称":"某型高性能传感器","是否受控":""}]}
+~~~
+ 
+**输出**
+
+~~~json
+{
+  "id": "dsh-export-ctl-check.EC-001.de09b5a6",
+  "ruleId": "EC-001",
+  "severity": "warn",
+  "locator": {
+    "field": "controlled",
+    "row": 1
+  },
+  "found": "第 1 行「controlled」为空",
+  "expected": "「controlled」应填写",
+  "fix": "补填是否受控；本条只核对是否声明，不判断该判断是否正确"
+}
+~~~
+
+*来源 `tests/fixtures/EC-001/EC-001-unsafe.json (cases.json expects EC-001 count 1); run via lib/index.mjs rules/export-ctl-check.yaml`*
+
 | 你会问 | 它怎么答 |
 |---|---|
 | 物项标为受控却没填许可证号，会被报出吗？ | 会，`EC-002` 报出这个缺口：某一行的「是否受控」取值属于本条配置为受控的那些值（出厂为 `是`、`Y`、`yes`、`true`、`受控`、`√`）时，它就要求填写出口许可证号。本条只核对证号栏是否填写，不判断该许可证是否真实、是否仍在有效期内、是否覆盖该物项与该目的地。台账若用别的写法表示受控，请把该写法加入本条的判定取值，否则该行会被当作非受控而不报——本插件不持有管制清单，无从替你判断。 |

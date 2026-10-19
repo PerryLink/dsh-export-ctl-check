@@ -28,6 +28,35 @@ dsh --profile <name> --dump-config | grep 'dsh-export-ctl-check'
 
 The table below is the example set: the first row is the detailed walkthrough, the remaining rows are short cases.
 
+#### Detailed output
+
+**Tool** `export_ctl_check`
+
+**Input**
+
+~~~json
+{"rows":[{"物项名称":"某型高性能传感器","是否受控":""}]}
+~~~
+ 
+**Output**
+
+~~~json
+{
+  "id": "dsh-export-ctl-check.EC-001.de09b5a6",
+  "ruleId": "EC-001",
+  "severity": "warn",
+  "locator": {
+    "field": "controlled",
+    "row": 1
+  },
+  "found": "第 1 行「controlled」为空",
+  "expected": "「controlled」应填写",
+  "fix": "补填是否受控；本条只核对是否声明，不判断该判断是否正确"
+}
+~~~
+
+*Observed from `tests/fixtures/EC-001/EC-001-unsafe.json (cases.json expects EC-001 count 1); run via lib/index.mjs rules/export-ctl-check.yaml`*
+
 | You ask | What it answers |
 |---|---|
 | Is it reported when an item marked as controlled has no licence number? | `EC-002` reports that gap: for a row whose 是否受控 value is one the rule is configured to treat as controlled — shipped as `是`, `Y`, `yes`, `true`, `受控`, `√` — it requires a 出口许可证号. It checks only that the number is filled in; it does not judge whether the licence is genuine, still valid, or covers that item and that destination. If your register writes some other word for controlled, add it to the rule's condition values, or the row counts as not controlled and the rule stays silent — this plugin holds no control list to decide the question for you. |
