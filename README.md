@@ -89,24 +89,11 @@ numbers do not repeat, that the control category comes from your vocabulary, and
 It does **not** decide whether an item is controlled, whether a licence is required, or whether an export would
 breach the rules.
 
-> ### ⚠️ What this plugin deliberately cannot do
+> ### ⚠️ Read this before trusting a citation in the report
 >
-> **It does not contain the control list, and it does not try to map a commodity code or a technical parameter
-> onto a list entry.** Because of that it **cannot find the most serious defect of all: an item that should
-> have been declared controlled and was not.** Whether an item is controlled is the exporter's own
-> determination under the law, and confirming it means checking the published list. This limit is stated in
-> the pack's header, in each rule's note, and in the troubleshooting section below — it is the single most
-> important thing to know about this plugin.
+> **`excerpt` status is per rule, not uniform.** Some rules quote the clause verbatim (`kind: direct`), some are derived from the principle of the cited articles (`kind: derived-from-principle`, capped at `warn`), and some use thresholds your institution configures (`kind: institutional-configuration`, capped at `info`). The pack never paraphrases a quotation: when the text was not obtained, the `excerpt` field says so and the reasoning lives in `note`; a test asserts that no rule claims a quotation it does not have. **For any rule still marked as not obtained, replace the `excerpt` with the real clause and raise `kind` to `direct` once the text is in hand.**
 >
-> The 是否受控 column is therefore the register's own declaration. Everything here checks what happens *after*
-> that declaration: is a licence recorded, is it dated, is the destination and end use stated, does the
-> register hold together. **It never checks whether the declaration was right.**
->
-> **The rule pack states its citation status rule by rule.** **4 of its 8 rules quote verbatim clause text** and are marked `direct`; the remaining 4 state in the `excerpt` field itself that the text was not obtained, and stay at `warn` or `info`. Where a rule still carries that note, treat it as a lead rather than as a citation. The
-> regime lives in 《中华人民共和国出口管制法》, the dual-use export licensing measures, and the published
-> control list. For the rules whose text the verification pass could not retrieve, the pack states the gap in the
-> `excerpt` field itself rather than paraphrasing it, and those rules stay at `warn` or `info`. **When the texts are in hand, replace
-> each `excerpt` with the real clause and raise `kind` to `direct`.**
+> The conclusion is the reviewer's: this plugin lists differences it can point to in the material and does not decide facts or compliance.
 
 ## Compatibility
 
