@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-dark.svg">
-  <img src="docs/assets/dsh-export-ctl-check-flow-light.svg" width="100%" alt="dsh-export-ctl-check प्रवाह: वस्तु रजिस्टर (JSON/YAML) → export_ctl_check टूल → rules/export-ctl-check.yaml (8 नियम) → रिपोर्ट (findings + skipped) → मानवीय समीक्षा">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-export-ctl-check-hero-en-light.webp" width="100%" alt="dsh-export-ctl-check: बाईं ओर प्लगइन का नाम, दो मूल्य-पंक्तियाँ और यह टिप्पणी है कि 8 नियम रजिस्टर का चक्र पूरा करते हैं और कोई नियंत्रण-सूची नहीं रखी जाती; दाईं ओर एक वस्तु का स्कोरबोर्ड है — आठ खाने, हर नियम के लिए एक, जिसमें नियम का id, वह कॉलम जिसे वह पढ़ता है और देखा गया मान है (controlled खाली → हिट; licenseNo की शर्त पूरी नहीं → छोड़ा; licenseAt भरा → उत्तीर्ण; endUse/endUser भरे → उत्तीर्ण; destination भरा → उत्तीर्ण; licenseNo बिना दोहराव → उत्तीर्ण; category civil-military, मान कॉन्फ़िगर नहीं → छोड़ा; itemName साफ़ → उत्तीर्ण), और नीचे EC-001 की एक warn प्राप्ति तथा EC-002 व EC-007 के दो छोड़े गए नियम उनके कारण के साथ">
 </picture>
 
 # dsh-export-ctl-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-export-ctl-check
 `dsh-export-ctl-check` एक निर्यात-नियंत्रण वस्तु रजिस्टर पढ़ता है — निर्यातक हेडर और प्रति वस्तु एक पंक्ति — और वस्तुओं पर कोई निर्णय दिए बिना उसी रजिस्टर की पूर्णता और क्लोज़र जाँचता है: क्या हर वस्तु नियंत्रण कॉलम में लिखती है कि वह नियंत्रित है या नहीं, क्या नियंत्रित के रूप में चिह्नित वस्तु के पास निर्यात लाइसेंस संख्या है, क्या दर्ज लाइसेंस संख्या के साथ जारी करने की तारीख है, क्या अंतिम उपयोग या अंतिम उपयोगकर्ता दर्ज है, क्या अंतिम गंतव्य दर्ज है, क्या एक ही रजिस्टर में लाइसेंस संख्या दोहराई गई है, क्या नियंत्रण श्रेणी संस्था की अपनी सूची से ली गई है, और क्या वस्तु-नाम कॉलम में कोई भरा न गया टेम्पलेट प्लेसहोल्डर बचा है।
 
 यह केवल वे अंतर गिनाता है जिन्हें सामग्री के भीतर इंगित किया जा सकता है, और हर अंतर के लिए पंक्ति, कॉलम, क्या छूटा और क्या भरना है बताता है; यह तय नहीं करता कि कोई वस्तु नियंत्रित है या नहीं, लाइसेंस आवश्यक है या नहीं, या कोई निर्यात नियमों का उल्लंघन करता है या नहीं। चैट में सामग्री सौंप दें — इंस्टॉल एक ही कमांड है और निष्कर्ष सीधे पढ़े जाते हैं। 33 टेस्ट (`npx vitest run`) सभी 8 नियमों के युग्मित फ़िक्सचर कवर करते हैं, और `samples/quickstart` ऑफ़लाइन एक वास्तविक जाँच चलाता है।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check संरचना: बाईं ओर दो इनपुट — रजिस्टर (JSON/YAML: चार वैकल्पिक हेडर फ़ील्ड, rows[], 13 मानक कॉलम और उनके alias, requireAnyOf) और नियम-पैक (8 नियम, 6 प्रकार की जाँच, लोड के समय सत्यापित) — तथा वह सीमा जिसे यह पार नहीं करता (कोई नियंत्रण-सूची नहीं); बीच में आठ द्वार एक सीढ़ी में, पहले तीन शर्त-श्रृंखला controlled → licenseNo → licenseAt बनाते हैं और हर द्वार केवल एक निकास से बाहर जाता है; दाईं ओर दो निकास और एक रिपोर्ट — issues[] (एक warn: पंक्ति 1 में controlled खाली, expected, fix और locator के साथ) और skipped[] (EC-002, EC-007 अपने कारण के साथ) — जो error 0 / warn 1 / info 0, issues 1, markdown और reportJson में मिलते हैं">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -332,7 +337,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-export-ctl-check
 ```
 
-प्लगइन डेटा-आधारित है: `src/model.ts` तालिका का आकार घोषित करता है, `src/shared/` का साझा किट पाठक और जाँच इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। अंतिम कमांड `../_shared` से साझा किट `src/shared/` में कॉपी करता है; साझा किट में हर बदलाव के बाद उसे दोबारा चलाएँ। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से प्रोग्रामेटिक रूप से बनती हैं (Python + Pillow, हल्का/गहरा SVG युग्म) और दोबारा चलाई जा सकती हैं।
+प्लगइन डेटा-आधारित है: `src/model.ts` तालिका का आकार घोषित करता है, `src/shared/` का साझा किट पाठक और जाँच इंजन देता है, और नियम-पैक हर जाँच घोषित करता है। अंतिम कमांड `../_shared` से साझा किट `src/shared/` में कॉपी करता है; साझा किट में हर बदलाव के बाद उसे दोबारा चलाएँ। README की छवियाँ [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से प्रोग्रामेटिक रूप से बनती हैं (Python + Pillow: हल्का/गहरा hero WebP युग्म और हल्का/गहरा संरचना SVG युग्म) और दोबारा चलाई जा सकती हैं।
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `export`, `ctl`
 

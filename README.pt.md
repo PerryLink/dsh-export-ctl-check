@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-dark.svg">
-  <img src="docs/assets/dsh-export-ctl-check-flow-light.svg" width="100%" alt="Fluxo do dsh-export-ctl-check: registro de itens (JSON/YAML) → ferramenta export_ctl_check → rules/export-ctl-check.yaml (8 regras) → relatório (findings + skipped) → revisão humana">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-export-ctl-check-hero-en-light.webp" width="100%" alt="dsh-export-ctl-check: a coluna esquerda traz o nome do plugin, duas linhas de valor e a nota de que 8 regras fecham o ciclo do registo e nenhuma lista de controlo é mantida; à direita está o marcador de um item — oito células, uma por regra, cada uma com o seu id, o campo que lê e o valor observado (controlled vazio → acerto; licenseNo com a condição não cumprida → ignorada; licenseAt preenchida → passa; endUse/endUser preenchidos → passa; destination preenchida → passa; licenseNo sem duplicados → passa; category civil-military com valores por configurar → ignorada; itemName limpo → passa), com o único achado warn de EC-001 e as duas omissões EC-002 e EC-007 por baixo">
 </picture>
 
 # dsh-export-ctl-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-export-ctl-check
 `dsh-export-ctl-check` lê um registro de itens sujeitos a controle de exportação — o cabeçalho do exportador mais uma linha por item — e confere a completude e o fechamento desse próprio registro, não um julgamento sobre os itens: se cada item declara na coluna de controle se está sujeito a controle, se um item marcado como controlado traz um número de licença de exportação, se um número de licença registrado vem acompanhado da data de emissão, se consta o uso final ou o usuário final, se consta o destino final, se um número de licença se repete dentro do mesmo registro, se a categoria de controle vem do vocabulário da própria instituição e se na coluna do nome do item sobrevive algum marcador de modelo.
 
 Ele lista apenas as diferenças que podem ser apontadas dentro do material e, para cada uma, informa a linha, a coluna, o que falta e o que preencher; não decide se um item está sujeito a controle, se precisa de licença nem se uma exportação cumpre a norma. Basta entregar o material no chat: a instalação é um único comando e os achados são para ler diretamente. 33 testes (`npx vitest run`) cobrem os pares de fixtures das 8 regras, e `samples/quickstart` executa uma verificação real offline.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check, estrutura: à esquerda duas entradas — o registo (JSON/YAML: quatro campos de cabeçalho opcionais, rows[], 13 colunas canónicas com alias, requireAnyOf) e o pacote de regras (8 regras, 6 tipos de verificação, validado ao carregar) — mais o limite que não cruza (não mantém lista de controlo); ao centro oito portas numa escada, as três primeiras formam a cadeia condicional controlled → licenseNo → licenseAt e cada porta sai por uma única saída; à direita as duas saídas e um relatório — issues[] (um warn: controlled vazio na linha 1, com expected, fix e o locator linha/coluna) e skipped[] (EC-002 e EC-007 com o seu motivo) — que dão error 0 / warn 1 / info 0, issues 1, markdown e reportJson">
+</picture>
 
 ## Instalação em três passos
 
@@ -332,7 +337,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-export-ctl-check
 ```
 
-O plugin é de dados: `src/model.ts` declara a forma da tabela, o kit compartilhado de `src/shared/` fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. O último comando copia o kit compartilhado de `../_shared` para `src/shared/`; execute-o de novo após cada mudança no kit compartilhado. As imagens do README são geradas por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow, par de SVG claro/escuro) e podem ser executadas de novo.
+O plugin é de dados: `src/model.ts` declara a forma da tabela, o kit compartilhado de `src/shared/` fornece o leitor e o motor de verificação, e o pacote de regras declara cada verificação. O último comando copia o kit compartilhado de `../_shared` para `src/shared/`; execute-o de novo após cada mudança no kit compartilhado. As imagens do README são geradas por [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow: par de WebP hero claro/escuro e par de SVG de estrutura claro/escuro) e podem ser executadas de novo.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `export`, `ctl`
 

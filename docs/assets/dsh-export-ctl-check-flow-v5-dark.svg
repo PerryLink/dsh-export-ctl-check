@@ -1,0 +1,147 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-labelledby="title desc">
+<title id="title">dsh-export-ctl-check: two inputs, eight gates, two exits, one report</title>
+<desc id="desc">A register (JSON or YAML: four optional header scalars, rows[] with 13 canonical column aliases) and the versioned rule pack enter from the left. Eight gates are stacked in one ladder. The first three form the only conditional chain: EC-001 presence on controlled, EC-002 conditionalPresence asking for licenseNo when controlled holds one of the configured values, EC-003 conditionalPresence asking for licenseAt when licenseNo is filled. The other five are independent: EC-004 presenceAny over endUse and endUser, EC-005 presence on destination, EC-006 uniqueness of licenseNo, EC-007 enum over the institution&#x27;s category values, EC-008 containsAny placeholder terms in itemName. Each gate leaves through exactly one exit: issues[] for what it found, skipped[] for what it could not run, with the reason. In the quickstart run one gate hits (EC-001: controlled empty on row 1, warn), two are skipped (EC-002: no row satisfies the controlled condition; EC-007: values ship empty) and five pass. Both exits converge on one report, error 0 / warn 1 / info 0, issueCount 1, skippedCount 2, rulesetVersion 2026.1, rendered as markdown plus reportJson. Read-only, offline, no model call, no control list held.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="0.2" y2="1"><stop offset="0" stop-color="#131a2a"/><stop offset="1" stop-color="#0c1016"/></linearGradient>
+<filter id="soft" x="-30%" y="-30%" width="160%" height="180%"><feDropShadow dx="0" dy="7" stdDeviation="9" flood-color="#000000" flood-opacity="0.52"/></filter>
+<pattern id="dots" width="24" height="24" patternUnits="userSpaceOnUse"><circle cx="1.2" cy="1.2" r="1.2" fill="#2a3346"/></pattern>
+</defs>
+<rect x="0" y="0" width="1100" height="660" fill="url(#bg)"/>
+<rect x="0" y="0" width="1100" height="660" fill="url(#dots)" opacity="0.5"/>
+<text x="44" y="56" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="30" font-weight="700">dsh-export-ctl-check</text>
+<text x="44" y="86" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="15">条件链 controlled → licenseNo → licenseAt + 五条独立规则；命中的进 issues[]，跑不了的进 skipped[]。</text>
+<rect x="731.0" y="30" width="325.0" height="28" rx="14.0" fill="#242d42"/>
+<text x="743.0" y="48.025" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11.5">rules/export-ctl-check.yaml · v2026.1 · 8 条</text>
+<text x="44" y="112" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">IN  ·  file | material  ·  JSON / YAML  ·  表头 4 栏 + rows[]  ·  只读</text>
+<text x="1056" y="112" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">OUT  ·  summary · issues[] · skipped[] · markdown · reportJson</text>
+<line x1="44" y1="126" x2="1056" y2="126" stroke="#2b3348" stroke-width="1" opacity="0.75"/>
+<rect x="44" y="140" width="256" height="166" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<text x="64" y="170" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13" font-weight="700">IN · 台账</text>
+<rect x="198.0" y="156" width="84.0" height="21" rx="10.5" fill="#242d42"/>
+<text x="207.0" y="170.35" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">JSON / YAML</text>
+<text x="64" y="198" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">表头 4 栏（可选）：exporter、</text>
+<text x="64" y="216" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">contractNo、listVersion、checkedAt</text>
+<text x="64" y="240" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">rows[] · 每行一条物项</text>
+<text x="64" y="262" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">13 个规范栏目 · 别名归一</text>
+<text x="64" y="284" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">requireAnyOf：至少一个已知栏名</text>
+<rect x="44" y="318" width="256" height="160" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<text x="64" y="348" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13" font-weight="700">RULES · 规则库</text>
+<rect x="186.0" y="334" width="96.0" height="21" rx="10.5" fill="#242d42"/>
+<text x="195.0" y="348.35" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">v2026.1 · 8 条</text>
+<text x="64" y="376" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">8 条规则 · 6 种 check kind</text>
+<text x="64" y="398" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">EC-001 … EC-008</text>
+<text x="64" y="420" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">加载期校验引用六字段</text>
+<text x="64" y="442" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">document / number / clause /</text>
+<text x="64" y="460" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">excerpt / kind / source</text>
+<rect x="44" y="490" width="256" height="76" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<rect x="47" y="502" width="4" height="52" rx="2" fill="#d9a441" opacity="0.75"/>
+<text x="66" y="516" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12" font-weight="700">BOUNDARY · 不持有管制清单</text>
+<text x="66" y="538" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">发现不了「该申报受控却没申报」</text>
+<text x="66" y="556" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">不判受控、不判许可、不下结论</text>
+<path d="M300 223H314V399H300" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+<path d="M314 311H322" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M330 311l-9 -4.6v9.2z" fill="#8496f5"/>
+<rect x="330" y="140" width="370" height="426" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<text x="352" y="170" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13" font-weight="700">CHECK · 每行 × 8 条规则</text>
+<rect x="574.0" y="156" width="108.0" height="21" rx="10.5" fill="#242d42"/>
+<text x="583.0" y="170.35" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">EC-001 … EC-008</text>
+<text x="352" y="186" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10">前 3 闸是条件链；状态列为 samples/quickstart 实测</text>
+<rect x="338.75" y="202" width="2.5" height="132" rx="1.25" fill="#8496f5" opacity="0.7"/>
+<rect x="338.75" y="334" width="2.5" height="224" rx="1.25" fill="#2b3348"/>
+<circle cx="340" cy="219" r="3.4" fill="#8496f5"/>
+<text x="356" y="216" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-001</text>
+<text x="412" y="216" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">presence</text>
+<text x="356" y="234" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">controlled</text>
+<rect x="635.0" y="207" width="47.0" height="22" rx="11.0" fill="#2f2718"/>
+<text x="644.0" y="221.675" fill="#d9a441" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">命中 1</text>
+<line x1="352" y1="242" x2="682" y2="242" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="265" r="3.4" fill="#8496f5"/>
+<text x="356" y="262" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-002</text>
+<text x="412" y="262" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">conditionalPresence</text>
+<text x="356" y="280" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">controlled → licenseNo</text>
+<rect x="644.0" y="253" width="38.0" height="22" rx="11.0" fill="#242b3a"/>
+<text x="653.0" y="267.675" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">跳过</text>
+<line x1="352" y1="288" x2="682" y2="288" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="311" r="3.4" fill="#8496f5"/>
+<text x="356" y="308" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-003</text>
+<text x="412" y="308" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">conditionalPresence</text>
+<text x="356" y="326" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">licenseNo → licenseAt</text>
+<rect x="644.0" y="299" width="38.0" height="22" rx="11.0" fill="#1b2b22"/>
+<text x="653.0" y="313.675" fill="#3fb950" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">通过</text>
+<line x1="352" y1="334" x2="682" y2="334" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="357" r="3.4" fill="#737b8d"/>
+<text x="356" y="354" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-004</text>
+<text x="412" y="354" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">presenceAny</text>
+<text x="356" y="372" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">endUse | endUser</text>
+<rect x="644.0" y="345" width="38.0" height="22" rx="11.0" fill="#1b2b22"/>
+<text x="653.0" y="359.675" fill="#3fb950" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">通过</text>
+<line x1="352" y1="380" x2="682" y2="380" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="403" r="3.4" fill="#737b8d"/>
+<text x="356" y="400" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-005</text>
+<text x="412" y="400" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">presence</text>
+<text x="356" y="418" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">destination</text>
+<rect x="644.0" y="391" width="38.0" height="22" rx="11.0" fill="#1b2b22"/>
+<text x="653.0" y="405.675" fill="#3fb950" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">通过</text>
+<line x1="352" y1="426" x2="682" y2="426" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="449" r="3.4" fill="#737b8d"/>
+<text x="356" y="446" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-006</text>
+<text x="412" y="446" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">unique</text>
+<text x="356" y="464" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">licenseNo（同表唯一）</text>
+<rect x="644.0" y="437" width="38.0" height="22" rx="11.0" fill="#1b2b22"/>
+<text x="653.0" y="451.675" fill="#3fb950" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">通过</text>
+<line x1="352" y1="472" x2="682" y2="472" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="495" r="3.4" fill="#737b8d"/>
+<text x="356" y="492" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-007</text>
+<text x="412" y="492" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">enum</text>
+<text x="356" y="510" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">category（本机构取值）</text>
+<rect x="644.0" y="483" width="38.0" height="22" rx="11.0" fill="#242b3a"/>
+<text x="653.0" y="497.675" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">跳过</text>
+<line x1="352" y1="518" x2="682" y2="518" stroke="#2b3348" stroke-width="1" opacity="0.7"/>
+<circle cx="340" cy="541" r="3.4" fill="#737b8d"/>
+<text x="356" y="538" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13.5" font-weight="700">EC-008</text>
+<text x="412" y="538" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">containsAny</text>
+<text x="356" y="556" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13">itemName（占位符词表）</text>
+<rect x="644.0" y="529" width="38.0" height="22" rx="11.0" fill="#1b2b22"/>
+<text x="653.0" y="543.675" fill="#3fb950" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5" font-weight="700">通过</text>
+<path d="M700 384H715" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+<path d="M715 300V470" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round" opacity="0.85"/>
+<path d="M715 300H722" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M730 300l-9 -4.6v9.2z" fill="#8496f5"/>
+<path d="M715 470H722" fill="none" stroke="#8496f5" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round"/>
+<path d="M730 470l-9 -4.6v9.2z" fill="#8496f5"/>
+<rect x="730" y="140" width="326" height="60" rx="16" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<text x="750" y="164" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">report · buildView()</text>
+<text x="1036" y="164" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">samples/quickstart</text>
+<text x="750" y="188" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13" font-weight="700">error 0 · warn 1 · info 0</text>
+<text x="1036" y="188" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" text-anchor="end">issues 1</text>
+<rect x="730" y="208" width="326" height="180" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<rect x="733" y="220" width="4" height="156" rx="2" fill="#d9a441" opacity="0.9"/>
+<text x="754" y="236" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13" font-weight="700">EXIT A · issues[]</text>
+<rect x="967.0" y="222" width="69.0" height="22" rx="11.0" fill="#2f2718"/>
+<text x="976.0" y="236.675" fill="#d9a441" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5">1 条 · warn</text>
+<text x="754" y="262" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11" font-weight="700">EC-001</text>
+<text x="790.0" y="262" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11"> · warn · 第 1 行 · </text>
+<text x="877.0" y="262" fill="#a8b1c4" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">controlled</text>
+<text x="754" y="286" fill="#f0f3f9" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="13">第 1 行「controlled」为空</text>
+<text x="754" y="310" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">expected：「controlled」应填写</text>
+<text x="754" y="332" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">fix：补填是否受控；本条只核对是否声明，</text>
+<text x="754" y="348" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">不判断该判断是否正确。</text>
+<text x="754" y="372" fill="#737b8d" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="11">locator { row: 1, column: controlled }</text>
+<rect x="730" y="396" width="326" height="170" rx="18" fill="#1b2231" stroke="#2e374b" stroke-width="1.5" filter="url(#soft)"/>
+<rect x="733" y="408" width="4" height="146" rx="2" fill="#8496f5" opacity="0.55"/>
+<text x="754" y="424" fill="#f0f3f9" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="13" font-weight="700">EXIT B · skipped[]</text>
+<rect x="999.0" y="410" width="37.0" height="22" rx="11.0" fill="#242d42"/>
+<text x="1008.0" y="424.675" fill="#8496f5" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5">2 条</text>
+<text x="754" y="450" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">跑不了的检查逐条写原因，绝不静默通过</text>
+<text x="754" y="476" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="10.5" font-weight="700">EC-002 </text>
+<text x="796.0" y="476" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5">没有满足「controlled」条件的行</text>
+<text x="754" y="496" fill="#8496f5" font-family="Consolas,'Microsoft YaHei',ui-monospace,monospace" font-size="10.5" font-weight="700">EC-007 </text>
+<text x="796.0" y="496" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="10.5">规则库未配置 values（category）</text>
+<text x="754" y="520" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">skipped 只装没能执行的检查，不进 issues[]</text>
+<text x="754" y="544" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">为空时报告写明「全部检查项均已执行」</text>
+<line x1="44" y1="578" x2="1056" y2="578" stroke="#2b3348" stroke-width="1" opacity="0.75"/>
+<text x="44" y="602" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="12">条件链只在条件成立时才换检查对象：controlled 命中 conditionValues → 查 licenseNo；证号已填 → 查 licenseAt。</text>
+<text x="44" y="624" fill="#a8b1c4" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">issues[] 为空 ≠ 没问题：没能执行的检查进 skipped[] 并写明原因；跑过而未命中的规则两栏都不进。</text>
+<text x="44" y="646" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11">只读 · 不联网 · 不调用模型 · 不写材料文件 · 不持有管制清单，也不判定是否受控或许可。</text>
+<text x="1056" y="646" fill="#737b8d" font-family="'Microsoft YaHei','Segoe UI','PingFang SC','Noto Sans CJK SC',sans-serif" font-size="11" text-anchor="end">4 direct + 4 derived-from-principle · 只读</text>
+</svg>

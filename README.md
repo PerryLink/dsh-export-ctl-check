@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-dark.svg">
-  <img src="docs/assets/dsh-export-ctl-check-flow-light.svg" width="100%" alt="dsh-export-ctl-check 数据流：物项台账（JSON/YAML）→ export_ctl_check 工具 → rules/export-ctl-check.yaml 八条规则 → 报告（findings + skipped）→ 人工复核">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-export-ctl-check-hero-zh-light.webp" width="100%" alt="dsh-export-ctl-check 配图：左列是插件名、两行价值句与「8 条规则核台账闭环；不持有管制清单」；右侧是一条物项的记分台——8 个格子各标规则号、它读的栏目和本次观察值（controlled 为空→命中；licenseNo 未触发条件→跳过；licenseAt 已填→通过；endUse/endUser 已填→通过；destination 已填→通过；licenseNo 无重复→通过；category 军民两用、取值未配置→跳过；itemName 无占位符→通过），下方是 EC-001 的一条 warn 发现、EC-002 与 EC-007 两条跳过及真实原因">
 </picture>
 
 # dsh-export-ctl-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-export-ctl-check
 `dsh-export-ctl-check` 读取一份出口管制物项台账——出口经营者表头加每条物项一行——核对的是这份台账自身的齐备与闭环，而不是对物项本身作出判断：每条物项是否在「是否受控」栏写明是否受控、标为受控的物项是否填写了出口许可证号、填了许可证号的是否写明了发证日期、最终用途或最终用户是否至少填写了一项、最终目的地是否填写、许可证号是否在同一份台账内重复、管制类别是否取用本机构自己的取值、物项名称栏是否残留【】、XXX、待填、TBD、示例之类未替换的占位符。
 
 它只列出材料内部可以逐条指认的差异，并逐条给出「哪一行、哪一栏、差什么、补什么」；不判定物项是否受控、是否需要许可，也不判定某项出口是否合规。在对话里把材料交给它即可，安装只需一条命令，核对结果直接读。33 个测试（`npx vitest run`）覆盖 8 条规则的成对夹具，`samples/quickstart` 可以离线跑通一次真实核对。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check 结构图：左边两份输入——台账（JSON/YAML：4 个可选表头栏、rows[] 每行一条物项、13 个规范栏目与别名归一、requireAnyOf 至少要认得一个已知栏名）与规则包（8 条规则、6 种 check kind、加载期校验 document / number / clause / excerpt / kind / source），下面标出不越界的边界（不持有管制清单）；中间 8 道闸排成一条阶梯，前三道是条件链 controlled → licenseNo → licenseAt，每道闸只从一个出口离开，右列是 samples/quickstart 的实测状态；右侧是两条出口与一份报告——issues[]（1 条 warn：第 1 行 controlled 为空，附 expected、fix 与 locator row/column）与 skipped[]（EC-002、EC-007 各附原因），汇成 error 0 / warn 1 / info 0、issues 1、markdown 与 reportJson">
+</picture>
 
 ## 三步上手
 
@@ -322,7 +327,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-export-ctl-check
 ```
 
-数据型插件：`src/model.ts` 声明表格形状，`src/shared/` 的共享套件提供读取与检查引擎，规则库声明每一条检查。最后一条命令把 `../_shared` 的共享件同步进 `src/shared/`，每次改动共享件后都要重跑。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow，输出深浅双版 SVG），可重复执行。
+数据型插件：`src/model.ts` 声明表格形状，`src/shared/` 的共享套件提供读取与检查引擎，规则库声明每一条检查。最后一条命令把 `../_shared` 的共享件同步进 `src/shared/`，每次改动共享件后都要重跑。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow：深浅双版 hero WebP 与深浅双版结构图 SVG），可重复执行。
 
 Topics：`dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `export`, `ctl`
 

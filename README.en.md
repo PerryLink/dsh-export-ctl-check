@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-dark.svg">
-  <img src="docs/assets/dsh-export-ctl-check-flow-light.svg" width="100%" alt="dsh-export-ctl-check data flow: item register (JSON/YAML) → export_ctl_check tool → rules/export-ctl-check.yaml (8 rules) → report (findings + skipped) → human review">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-hero-en-dark.webp">
+  <img src="docs/assets/dsh-export-ctl-check-hero-en-light.webp" width="100%" alt="dsh-export-ctl-check: the left column carries the plugin name, two value lines and the note that 8 rules close the register loop and no control list is held; the right side is one item's scoreboard — eight cells, one per rule, each with the rule id, the field it reads and the value it observed (controlled empty → hit; licenseNo condition not met → skipped; licenseAt filled → pass; endUse/endUser filled → pass; destination filled → pass; licenseNo unique → pass; category civil-military with values unconfigured → skipped; itemName clean → pass), followed by the single EC-001 warn finding and the two skips EC-002 and EC-007">
 </picture>
 
 # dsh-export-ctl-check
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-export-ctl-check
 `dsh-export-ctl-check` reads one export-control item register — the exporter header plus one row per item — and cross-checks that register's own completeness and closure rather than judging the items: whether each item states in the controlled column whether it is controlled, whether an item marked as controlled carries an export licence number, whether a recorded licence number is accompanied by an issue date, whether the end use or the end user is recorded, whether the destination is recorded, whether a licence number repeats inside the same register, whether the control category comes from the institution's own vocabulary, and whether a template placeholder (an empty bracket pair, `XXX`, `TBD` or a fill-me marker) still survives in the item-name column.
 
 It lists only differences that can be pointed to inside the material, and gives the row, the column, what is missing and what to fill in. It does not decide whether an item is controlled, whether a licence is required, or whether an export complies. Hand it the material in chat — installation is one command, and the findings are meant to be read directly. 33 tests (`npx vitest run`) cover paired fixtures for the 8 rules, and `samples/quickstart` runs one real check offline.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-export-ctl-check-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check structure: two inputs on the left — the register (JSON/YAML: four optional header scalars, rows[], 13 canonical column aliases, requireAnyOf) and the rule pack (8 rules, 6 check kinds, validated at load for document / number / clause / excerpt / kind / source) — plus the boundary the pack will not cross (no control list held); in the middle eight gates are stacked in one ladder, the first three forming the conditional chain controlled → licenseNo → licenseAt, each gate leaving through exactly one exit, with the quickstart state in the right column; on the right the two exits and one report — issues[] (one warn: controlled empty on row 1, with expected, fix and the locator row/column) and skipped[] (EC-002, EC-007 with their reasons) — resolving into error 0 / warn 1 / info 0, issues 1, markdown and reportJson">
+</picture>
 
 ## Three-step setup
 
@@ -332,7 +337,7 @@ pnpm run check:readmes
 node ../scripts/sync-shared.mjs dsh-export-ctl-check
 ```
 
-The plugin is data-only: `src/model.ts` declares the table shape, the shared kit in `src/shared/` supplies the reader and the check engine, and the rule pack declares every check. The last command copies the shared kit from `../_shared` into `src/shared/`; re-run it after every shared-kit change. README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow, light/dark SVG pair) and are safe to re-run.
+The plugin is data-only: `src/model.ts` declares the table shape, the shared kit in `src/shared/` supplies the reader and the check engine, and the rule pack declares every check. The last command copies the shared kit from `../_shared` into `src/shared/`; re-run it after every shared-kit change. README images are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow: a light/dark hero WebP pair and a light/dark structure SVG pair) and are safe to re-run.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `cordis`, `export`, `ctl`
 
