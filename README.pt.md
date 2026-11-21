@@ -45,6 +45,11 @@ Ele lista apenas as diferenças que podem ser apontadas dentro do material e, pa
   <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check, estrutura: à esquerda duas entradas — o registo (JSON/YAML: quatro campos de cabeçalho opcionais, rows[], 13 colunas canónicas com alias, requireAnyOf) e o pacote de regras (8 regras, 6 tipos de verificação, validado ao carregar) — mais o limite que não cruza (não mantém lista de controlo); ao centro oito portas numa escada, as três primeiras formam a cadeia condicional controlled → licenseNo → licenseAt e cada porta sai por uma única saída; à direita as duas saídas e um relatório — issues[] (um warn: controlled vazio na linha 1, com expected, fix e o locator linha/coluna) e skipped[] (EC-002 e EC-007 com o seu motivo) — que dão error 0 / warn 1 / info 0, issues 1, markdown e reportJson">
 </picture>
 
+![dsh-export-ctl-check: execução real de terminal](docs/assets/dsh-export-ctl-check-demo.gif)
+
+*Repetição animada de uma execução real registrada neste repositório.*
+
+
 ## Instalação em três passos
 
 1. **Instalar** (escolha um canal):

@@ -111,6 +111,10 @@ It lists only differences that can be pointed to inside the material, and gives 
 
 ### Examples
 
+![dsh-export-ctl-check: real terminal run](docs/assets/dsh-export-ctl-check-demo.gif)
+
+*Animated replay of a real run recorded in this repository.*
+
 This is the plugin's real output on its own `EC-001` fixture, not an illustration.
 
 **Tool** `export_ctl_check`

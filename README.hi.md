@@ -45,6 +45,11 @@ dsh plugin --profile <name> add dsh-export-ctl-check
   <img src="docs/assets/dsh-export-ctl-check-flow-v5-light.svg" width="100%" alt="dsh-export-ctl-check संरचना: बाईं ओर दो इनपुट — रजिस्टर (JSON/YAML: चार वैकल्पिक हेडर फ़ील्ड, rows[], 13 मानक कॉलम और उनके alias, requireAnyOf) और नियम-पैक (8 नियम, 6 प्रकार की जाँच, लोड के समय सत्यापित) — तथा वह सीमा जिसे यह पार नहीं करता (कोई नियंत्रण-सूची नहीं); बीच में आठ द्वार एक सीढ़ी में, पहले तीन शर्त-श्रृंखला controlled → licenseNo → licenseAt बनाते हैं और हर द्वार केवल एक निकास से बाहर जाता है; दाईं ओर दो निकास और एक रिपोर्ट — issues[] (एक warn: पंक्ति 1 में controlled खाली, expected, fix और locator के साथ) और skipped[] (EC-002, EC-007 अपने कारण के साथ) — जो error 0 / warn 1 / info 0, issues 1, markdown और reportJson में मिलते हैं">
 </picture>
 
+![dsh-export-ctl-check का असली टर्मिनल रन](docs/assets/dsh-export-ctl-check-demo.gif)
+
+*इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
+
+
 ## तीन चरणों में शुरुआत
 
 1. **इंस्टॉल करें** (कोई एक चैनल चुनें):
