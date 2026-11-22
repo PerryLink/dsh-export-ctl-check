@@ -7,6 +7,8 @@
 
 # dsh-export-ctl-check
 
+Current version `0.2.16`.
+
 **Check an export-control item register line by line — which row, which column, what is missing. Differences only, no verdict.**
 
 An offline checker for customs-compliance and export-control teams: it reads one item register (an exporter header plus one row per item) and checks that register's own completeness and closure against a versioned rule pack. No network, no model call, no change to the original material.
