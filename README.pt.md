@@ -11,6 +11,8 @@
 
 Um verificador offline para equipes de conformidade aduaneira e controle de exportações: lê um registro de itens (cabeçalho do exportador mais uma linha por item) e confere a completude e o fechamento desse próprio registro com um pacote de regras versionado. Sem rede, sem chamada ao modelo e sem alterar o material original.
 
+Última verificação: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [Instalação](#instalação-em-três-passos) · [Configuração](#configuração) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ Ele lista apenas as diferenças que podem ser apontadas dentro do material e, pa
 ![dsh-export-ctl-check: execução real de terminal](docs/assets/dsh-export-ctl-check-demo.gif)
 
 *Repetição animada de uma execução real registrada neste repositório.*
-
 
 ## Instalação em três passos
 

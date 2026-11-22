@@ -11,6 +11,8 @@
 
 सीमा-शुल्क अनुपालन और निर्यात-नियंत्रण टीमों के लिए एक ऑफ़लाइन जाँचकर्ता: यह एक वस्तु रजिस्टर (निर्यातक हेडर और प्रति वस्तु एक पंक्ति) पढ़ता है और संस्करणबद्ध नियम-पैक के अनुसार उसी रजिस्टर की पूर्णता और क्लोज़र जाँचता है। कोई नेटवर्क नहीं, कोई मॉडल कॉल नहीं, मूल सामग्री में कोई बदलाव नहीं।
 
+अंतिम सत्यापन: DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
+
 [इंस्टॉल](#तीन-चरणों-में-शुरुआत) · [कॉन्फ़िगरेशन](#कॉन्फ़िगरेशन) · [FAQ](#faq) · [简体中文](README.md) · [English](README.en.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
 
 [![License](https://img.shields.io/badge/license-Apache--2.0-3366CC?style=flat-square&labelColor=2B3245)](LICENSE)
@@ -48,7 +50,6 @@ dsh plugin --profile <name> add dsh-export-ctl-check
 ![dsh-export-ctl-check का असली टर्मिनल रन](docs/assets/dsh-export-ctl-check-demo.gif)
 
 *इस रिपॉज़िटरी में दर्ज असली रन का एनिमेटेड रीप्ले।*
-
 
 ## तीन चरणों में शुरुआत
 
